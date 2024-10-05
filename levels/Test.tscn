@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://s42cgodrs57b"]
+
+[ext_resource type="PackedScene" uid="uid://bbl0dc78atrn0" path="res://shared/player_controller/Player.tscn" id="1_vtlxo"]
+[ext_resource type="Material" uid="uid://vvjlst2ddt71" path="res://materials/forest_ground.tres" id="2_3b3jb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rpex"]
+
+[sub_resource type="Sky" id="Sky_fqj17"]
+sky_material = SubResource("ProceduralSkyMaterial_4rpex")
+
+[sub_resource type="Environment" id="Environment_p06qt"]
+background_mode = 2
+sky = SubResource("Sky_fqj17")
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+fog_enabled = true
+volumetric_fog_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ce5ld"]
+size = Vector2(100, 100)
+
+[node name="Test" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p06qt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.99961, 0.0118002, -0.0253057, 0, 0.906308, 0.422618, 0.0279217, 0.422453, -0.905954, 0, 10, 0)
+shadow_enabled = true
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_vtlxo")]
+
+[node name="CSG" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSG"]
+use_collision = true
+mesh = SubResource("PlaneMesh_ce5ld")
+material = ExtResource("2_3b3jb")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+use_collision = true
+size = Vector3(1, 2, 1)

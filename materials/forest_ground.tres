@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://vvjlst2ddt71"]
+
+[ext_resource type="Texture2D" uid="uid://dqdd3jwyglq3k" path="res://materials/textures/forest_leaves_02_diffuse_1k.jpg" id="1_x6iy8"]
+[ext_resource type="Texture2D" uid="uid://byyjckfas1qj2" path="res://materials/textures/forest_leaves_02_nor_gl_1k.jpg" id="2_yyia7"]
+[ext_resource type="Texture2D" uid="uid://bo78gl0wbpog2" path="res://materials/textures/forest_leaves_02_rough_1k.jpg" id="3_mhrao"]
+
+[resource]
+albedo_texture = ExtResource("1_x6iy8")
+roughness_texture = ExtResource("3_mhrao")
+normal_enabled = true
+normal_texture = ExtResource("2_yyia7")
+uv1_scale = Vector3(20, 20, 20)
