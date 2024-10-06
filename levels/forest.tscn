@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://cv2124dw20nr6"]
+
+[ext_resource type="Terrain3DStorage" uid="uid://bqq0gj5xmbv5y" path="res://levels/terrain/terrain_storage.res" id="1_v70j1"]
+[ext_resource type="Environment" uid="uid://bb68vdkyij56k" path="res://levels/forest_envirometn.tres" id="1_x3xqb"]
+[ext_resource type="Terrain3DMaterial" uid="uid://dygxl63t7siht" path="res://levels/terrain/terrain_material.res" id="2_vyuxb"]
+[ext_resource type="Terrain3DAssets" uid="uid://cmaddhqip2uu6" path="res://levels/terrain/terrain_assets.res" id="3_nggy1"]
+[ext_resource type="Material" uid="uid://c3mh5p2w5s8g7" path="res://materials/Water.tres" id="5_2cmh2"]
+[ext_resource type="PackedScene" uid="uid://bbl0dc78atrn0" path="res://shared/player_controller/Player.tscn" id="6_nqlm7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y4kxs"]
+size = Vector3(58, 1.945, 35)
+
+[node name="Forest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_x3xqb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.941959, 0.961603, 1, 1)
+light_energy = 0.9
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 1.25
+shadow_enabled = true
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+storage = ExtResource("1_v70j1")
+material = ExtResource("2_vyuxb")
+assets = ExtResource("3_nggy1")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("6_nqlm7")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 5, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3.75, 47)
+mesh = SubResource("BoxMesh_y4kxs")
+material = ExtResource("5_2cmh2")

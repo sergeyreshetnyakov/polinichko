@@ -69,9 +69,11 @@ func change_state(state: State) -> void:
 			current_speed = global.player_sprint_speed
 		State.JUMP:
 			velocity.y = global.player_jump_velocity
+			change_state(State.WALK)
 
-func toggle_state(base_state: State, toggled_state: State):
+func toggle_state(base_state: State, toggled_state: State) -> void:
 	if current_state == base_state:
 		change_state(toggled_state)
 	elif current_state == toggled_state:
 		change_state(base_state)
+	print(current_state)
