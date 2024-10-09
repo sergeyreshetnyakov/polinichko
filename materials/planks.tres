@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://davd70s7lq3io"]
+
+[ext_resource type="Texture2D" uid="uid://cv1vphr0umwiy" path="res://materials/dark_planks/dark_planks_diff_1k.jpg" id="1_8ms6r"]
+[ext_resource type="Texture2D" uid="uid://bdp8477nayqxk" path="res://materials/dark_planks/dark_planks_ao_1k.jpg" id="2_p2ya4"]
+[ext_resource type="Texture2D" uid="uid://bhnnw5pk2salc" path="res://materials/dark_planks/dark_planks_disp_1k.jpg" id="3_ekxl8"]
+[ext_resource type="Texture2D" uid="uid://1k1r02prul8c" path="res://materials/dark_planks/dark_planks_nor_gl_1k.jpg" id="4_31sb2"]
+[ext_resource type="Texture2D" uid="uid://blr6yeilr50qf" path="res://materials/dark_planks/dark_planks_rough_1k.jpg" id="5_eeamv"]
+
+[resource]
+albedo_texture = ExtResource("1_8ms6r")
+roughness_texture = ExtResource("5_eeamv")
+normal_enabled = true
+normal_texture = ExtResource("4_31sb2")
+ao_enabled = true
+ao_texture = ExtResource("2_p2ya4")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_ekxl8")
+uv1_triplanar = true

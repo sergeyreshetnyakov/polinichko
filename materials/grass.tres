@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bk8d6fe25jngd"]
+
+[ext_resource type="Texture2D" uid="uid://dxcynhpe43d8a" path="res://materials/grass/vlkhcbxia_2K_Albedo.png" id="1_y7g18"]
+[ext_resource type="Texture2D" uid="uid://blfg4d5s30l6r" path="res://materials/grass/vlkhcbxia_2K_Opacity.jpg" id="2_7edc5"]
+[ext_resource type="Texture2D" uid="uid://crcee8qghud8h" path="res://materials/grass/vlkhcbxia_2K_Normal.jpg" id="2_adgoy"]
+[ext_resource type="Texture2D" uid="uid://e0vivpyj3mur" path="res://materials/grass/vlkhcbxia_2K_Roughness.jpg" id="3_cka31"]
+
+[resource]
+albedo_texture = ExtResource("1_y7g18")
+roughness_texture = ExtResource("3_cka31")
+normal_enabled = true
+normal_texture = ExtResource("2_adgoy")
+detail_mask = ExtResource("2_7edc5")
+detail_blend_mode = 3

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://c3mh5p2w5s8g7"]
 
-[ext_resource type="Shader" path="res://shared/shaders/Water.gdshader" id="1_wq4uc"]
+[ext_resource type="Shader" path="res://shared/shaders/water.gdshader" id="1_ypo7s"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_uy1w0"]
 fractal_type = 2
@@ -36,7 +36,7 @@ noise = SubResource("FastNoiseLite_gplfh")
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_wq4uc")
+shader = ExtResource("1_ypo7s")
 shader_parameter/depth_fade_distance = 0.35
 shader_parameter/absorbance = 8.0
 shader_parameter/shallow_color = Color(1.21831e-07, 0.0567382, 0.086985, 1)
