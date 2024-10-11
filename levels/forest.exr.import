@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://1e1tf5iy6asv"
+path="res://.godot/imported/forest.exr-8e1f9e59e3088dde591c14e956aa2d33.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://levels/forest.exr"
+dest_files=["res://.godot/imported/forest.exr-8e1f9e59e3088dde591c14e956aa2d33.ctexarray"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=12

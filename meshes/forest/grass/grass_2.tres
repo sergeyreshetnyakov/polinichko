@@ -3,9 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dgbq2gtrdjbof" path="res://meshes/forest/grass/grass_2.png" id="1_04wcb"]
 
 [resource]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
+transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("1_04wcb")
+texture_filter = 4
 texture_repeat = false

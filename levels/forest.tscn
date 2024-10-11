@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cv2124dw20nr6"]
+[gd_scene load_steps=19 format=3 uid="uid://cv2124dw20nr6"]
 
 [ext_resource type="Terrain3DStorage" uid="uid://bqq0gj5xmbv5y" path="res://levels/terrain/terrain_storage.res" id="2_0hvkm"]
 [ext_resource type="Terrain3DMaterial" uid="uid://dygxl63t7siht" path="res://levels/terrain/terrain_material.res" id="3_3mj5j"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://bxfjw14bop64r" path="res://meshes/forest/house_ lod.blend" id="9_re2sf"]
 [ext_resource type="PackedScene" uid="uid://bs4l7vt0x7mis" path="res://meshes/forest/rock_2/rock_2.fbx" id="10_wojr1"]
 [ext_resource type="PackedScene" uid="uid://b1tt0yofnyi8c" path="res://meshes/forest/rock_1/rock_1.fbx" id="11_hoj2q"]
+[ext_resource type="Shader" path="res://shared/shaders/grain.gdshader" id="12_64wsu"]
+[ext_resource type="LightmapGIData" uid="uid://bnkgmvx3onjvg" path="res://levels/forest.lmbake" id="13_hjk8s"]
+[ext_resource type="VoxelGIData" uid="uid://b663lyrq4ft15" path="res://levels/forest.VoxelGI_data.res" id="14_aeh44"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wnmbg"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -21,31 +24,42 @@ sun_curve = 1e-05
 sky_material = SubResource("ProceduralSkyMaterial_wnmbg")
 
 [sub_resource type="Environment" id="Environment_y8yvg"]
-background_mode = 2
 sky = SubResource("Sky_3foxd")
-ambient_light_source = 1
 tonemap_mode = 1
-tonemap_white = 1.2
+tonemap_exposure = 1.5
+tonemap_white = 6.0
 ssr_enabled = true
 ssao_enabled = true
 ssao_intensity = 1.5
 ssil_enabled = true
-sdfgi_enabled = true
 glow_enabled = true
 glow_normalized = true
 fog_enabled = true
 fog_mode = 1
+fog_light_color = Color(0.7718, 0.79422, 0.829452, 1)
 fog_density = 1.0
-fog_depth_curve = 0.5
-fog_depth_begin = 0.0
+fog_depth_curve = 0.75
+fog_depth_begin = 5.0
 volumetric_fog_enabled = true
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 0.75
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n8p1k"]
+shader = ExtResource("12_64wsu")
+shader_parameter/grain_amount = 0.005
+shader_parameter/grain_size = 4.0
+shader_parameter/grain_speed = 0.1
 
 [node name="Forest" type="Node3D"]
 
-[node name="Terrain3D" type="Terrain3D" parent="."]
-storage = ExtResource("2_0hvkm")
-material = ExtResource("3_3mj5j")
-assets = ExtResource("4_go858")
+[node name="LightmapGI" type="LightmapGI" parent="."]
+light_data = ExtResource("13_hjk8s")
+
+[node name="VoxelGI" type="VoxelGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.5, 9, 12)
+size = Vector3(129, 20, 138)
+data = ExtResource("14_aeh44")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y8yvg")
@@ -53,13 +67,28 @@ environment = SubResource("Environment_y8yvg")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 light_color = Color(0.517647, 0.552941, 0.607843, 1)
-light_energy = 0.8
 shadow_enabled = true
-shadow_opacity = 0.8
+shadow_opacity = 0.75
 shadow_blur = 2.0
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("6_nqlm7")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+storage = ExtResource("2_0hvkm")
+material = ExtResource("3_3mj5j")
+assets = ExtResource("4_go858")
+
+[node name="Grain" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Grain"]
+material = SubResource("ShaderMaterial_n8p1k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 
 [node name="Road" type="Node3D" parent="."]
 
@@ -294,7 +323,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 29.0357)
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -3.9, 0, 20.1463)
 
 [node name="Pine_14" parent="Trees" instance=ExtResource("8_6yudr")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -4, 0, 14.4417)
+transform = Transform3D(0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, 0.5, -4, 0, 14.4417)
 
 [node name="Pine_11" parent="Trees" instance=ExtResource("8_6yudr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -11.594)
@@ -341,10 +370,10 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 [node name="Pine_23" parent="Trees" instance=ExtResource("8_6yudr")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 2.72858, 0, 30.7528)
 
-[node name="house_ lod" parent="." instance=ExtResource("9_re2sf")]
+[node name="house_ lod" parent="Trees" instance=ExtResource("9_re2sf")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 9.5985, 2, -9.52905)
 
-[node name="house_ lod2" parent="." instance=ExtResource("9_re2sf")]
+[node name="house_ lod2" parent="Trees" instance=ExtResource("9_re2sf")]
 transform = Transform3D(0.866026, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866026, 13.5985, 2, 35.471)
 
 [node name="Rocks" type="Node3D" parent="."]

@@ -76,4 +76,3 @@ func toggle_state(base_state: State, toggled_state: State) -> void:
 		change_state(toggled_state)
 	elif current_state == toggled_state:
 		change_state(base_state)
-	print(current_state)
